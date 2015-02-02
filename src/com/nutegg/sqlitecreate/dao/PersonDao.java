@@ -16,9 +16,9 @@ public class PersonDao {
 		helper = new PersonSQLiteOpenHelper(context);
 	}
 	
-	public void add(String name, String number){
+	public void add(String name, String number,int account){
 		SQLiteDatabase db = helper.getWritableDatabase();
-		db.execSQL("insert into person(name,number) values(?,?)", new Object[]{name,number});
+		db.execSQL("insert into person(name,number,account) values(?,?,?)", new Object[]{name,number,account});
 		db.close();
 	}
 	public void update(String name, String number){
@@ -48,7 +48,8 @@ public class PersonDao {
 			int id = cursor.getInt(cursor.getColumnIndex("id"));
 			String name = cursor.getString(cursor.getColumnIndex("name"));
 			String number = cursor.getString(cursor.getColumnIndex("number"));
-			Person p = new Person(id,name,number);
+			int account = cursor.getInt(cursor.getColumnIndex("account"));
+			Person p = new Person(id,name,number,account);
 			persons.add(p);
 		}
 		cursor.close();

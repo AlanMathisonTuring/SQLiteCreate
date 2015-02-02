@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class PersonSQLiteOpenHelper extends SQLiteOpenHelper {
 
 	public PersonSQLiteOpenHelper(Context context) {
-		super(context, "person.db", null, 1);
+		super(context, "person.db", null, 2);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,9 +19,9 @@ public class PersonSQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-
+		db.execSQL("alter table person add account varchar(20)");
 	}
 
 }
