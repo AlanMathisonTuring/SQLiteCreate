@@ -7,6 +7,7 @@ import android.test.AndroidTestCase;
 
 import com.nutegg.sqlitecreate.PersonSQLiteOpenHelper;
 import com.nutegg.sqlitecreate.dao.PersonDao;
+import com.nutegg.sqlitecreate.dao.PersonSqliteApiDao;
 import com.nutegg.sqlitecreate.domain.Person;
 
 public class PersonSQLiteOpenHelperTest extends AndroidTestCase {
@@ -18,35 +19,32 @@ public class PersonSQLiteOpenHelperTest extends AndroidTestCase {
 	}
 	
 	public void	testAdd() throws Exception{
-		PersonDao personDao= new PersonDao(getContext());
-		personDao.add("Jack", "13575757151");
-		personDao.add("LoonFly", "13575757152");
-		personDao.add("Mr.Yang", "13575757153");
-		personDao.add("老高", "13575757154");
-		personDao.add("陈聪", "13575757155");
-		personDao.add("老马", "13575757156");
-		personDao.add("Manager.Yu", "13575757157");
+		PersonSqliteApiDao personDao= new PersonSqliteApiDao(getContext());
+
+		personDao.add("Sky", "13575757159");
+
 			
 	}
 	
 	public void	testDelete() throws Exception{
-		PersonDao personDao= new PersonDao(getContext());
-		personDao.delete(1);	
+		PersonSqliteApiDao personDao= new PersonSqliteApiDao(getContext());
+		personDao.delete("吴新超");	
 	}
+
 	
 	public void	testUpdate() throws Exception{
-		PersonDao personDao= new PersonDao(getContext());
-		personDao.update("吴新超", "18069676589");	
+		PersonSqliteApiDao personDao= new PersonSqliteApiDao(getContext());
+		personDao.update("LoonFly", "110");	
 	}
 	
 	public void	testFind() throws Exception{
-		PersonDao personDao= new PersonDao(getContext());
+		PersonSqliteApiDao personDao= new PersonSqliteApiDao(getContext());
 		boolean isFind = personDao.find("吴新超");
 		assertEquals(isFind, true);
 	}
 	
 	public void	testFindAll() throws Exception{
-		PersonDao personDao= new PersonDao(getContext());	
+		PersonSqliteApiDao personDao= new PersonSqliteApiDao(getContext());	
 		List<Person> persons = personDao.findAll();
 		if(persons.size()>0){
 			for(Person p : persons){
