@@ -11,6 +11,12 @@ public class Person {
 	
 	}
 	
+	@Override
+	public String toString() {
+		return "名字:" + name + "\n 电话号码:" + number + "\n 银行存款:"
+				+ account + "";
+	}
+
 	public Person(int id, String name, String number, int account) {
 		super();
 		this.id = id;
