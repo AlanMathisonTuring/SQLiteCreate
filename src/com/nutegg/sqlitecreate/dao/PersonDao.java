@@ -9,7 +9,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.nutegg.sqlitecreate.PersonSQLiteOpenHelper;
 import com.nutegg.sqlitecreate.domain.Person;
-
+/**
+ * 此类是SQL语句执行增删改查操作
+ * @author GaryChen
+ *
+ */
 public class PersonDao {
 	private PersonSQLiteOpenHelper helper;
 	public PersonDao(Context context){

@@ -10,7 +10,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.nutegg.sqlitecreate.PersonSQLiteOpenHelper;
 import com.nutegg.sqlitecreate.domain.Person;
-
+/**
+ * 此类是系统API执行增删改查操作
+ * @author GaryChen
+ *
+ */
 public class PersonSqliteApiDao {
 	private PersonSQLiteOpenHelper helper;
 	public PersonSqliteApiDao(Context context){
