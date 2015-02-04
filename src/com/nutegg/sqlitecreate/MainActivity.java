@@ -50,12 +50,29 @@ public class MainActivity extends Activity {
 		@Override
 		public View getView(int position, View v, ViewGroup vg) {
 			// TODO Auto-generated method stub
-			TextView tv = new TextView(getApplicationContext());
-			tv.setTextSize(20);
-			tv.setTextColor(Color.BLACK);
 			Person person = persons.get(position);
-			tv.setText(person.toString());
-			return tv;
+			//直接将数据放到TextView中
+//			TextView tv = new TextView(getApplicationContext());
+//			tv.setTextSize(20);
+//			tv.setTextColor(Color.BLACK);			
+//			tv.setText(person.toString());
+//			return tv;
+			//利用layoutInflater打气筒创建一个View对象
+			View view = View.inflate(MainActivity.this, R.layout.list_item, null);
+			
+			TextView tv_id = (TextView)view.findViewById(R.id.tv_id);
+			tv_id.setText("ID："+person.getId());
+			
+			TextView tv_name = (TextView)view.findViewById(R.id.tv_name);
+			tv_name.setText("姓名："+person.getName());
+			
+			TextView tv_number = (TextView)view.findViewById(R.id.tv_number);
+			tv_number.setText("VIP卡余额："+person.getNumber());
+			
+			TextView tv_account = (TextView)view.findViewById(R.id.tv_account);
+			tv_account.setText("电话号码："+person.getAccount());
+			
+			return view;
 		}
 		
 	}
