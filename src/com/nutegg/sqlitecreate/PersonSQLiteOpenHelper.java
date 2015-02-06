@@ -9,7 +9,7 @@ public class PersonSQLiteOpenHelper extends SQLiteOpenHelper {
 	
 	public PersonSQLiteOpenHelper(Context context) {
 		//最后一个参数为版本号,如果版本号改变将会执行下面的onUpgrade
-		super(context, "person.db", null, 3);
+		super(context, "person.db", null, 2);
 		// TODO Auto-generated constructor stub
 	}
 	

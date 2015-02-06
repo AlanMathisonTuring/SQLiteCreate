@@ -24,6 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="com.nutegg.sqlitecreate.personprovider.PersonProvider"
+            android:authorities="com.nutegg.personprovider"
+            android:exported="true"
+            >
+            
+           </provider>
     </application>
 
 </manifest>
