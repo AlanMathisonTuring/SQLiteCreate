@@ -13,17 +13,17 @@ public class PersonProvider extends ContentProvider {
 
 	PersonSQLiteOpenHelper helper;
 	private static final int QUERY = 1;
-	private static final int INSERT = 1;
-	private static final int UPDATE = 1;
-	private static final int DELETE = 1;
+	private static final int INSERT = 2;
+	private static final int UPDATE = 3;
+	private static final int DELETE = 4;
 	//定义uri匹配器,如果不匹配,返回-1
 	private static UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
 	//定义一组匹配规则
 	static{
 		matcher.addURI("com.nutegg.personprovider", "query", QUERY);
-		matcher.addURI("com.nutegg.personprovider", "query", INSERT);
-		matcher.addURI("com.nutegg.personprovider", "query", UPDATE);
-		matcher.addURI("com.nutegg.personprovider", "query", DELETE);
+		matcher.addURI("com.nutegg.personprovider", "insert", INSERT);
+		matcher.addURI("com.nutegg.personprovider", "update", UPDATE);
+		matcher.addURI("com.nutegg.personprovider", "delete", DELETE);
 	}
 	@Override
 	public int delete(Uri arg0, String arg1, String[] arg2) {
@@ -38,8 +38,18 @@ public class PersonProvider extends ContentProvider {
 	}
 
 	@Override
-	public Uri insert(Uri arg0, ContentValues arg1) {
+	public Uri insert(Uri uri, ContentValues values) {
 		// TODO Auto-generated method stub
+		if(matcher.match(uri) == INSERT){
+			System.out.println("路径匹配成功,正在进行新增操作!");
+			Uri url = Uri.parse("content://com.nutegg.doing/insert");
+			SQLiteDatabase db = helper.getReadableDatabase();
+			db.insert("person",null, values);
+			this.getContext().getContentResolver().notifyChange(url, null);
+		}else{
+			System.out.println("路径匹配失败,不能进行新增操作!");
+			throw new IllegalArgumentException("路径匹配失败,不能进行新增操作!");
+		}
 		return null;
 	}
 

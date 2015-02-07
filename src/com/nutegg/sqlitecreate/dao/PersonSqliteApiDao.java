@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import com.nutegg.sqlitecreate.PersonSQLiteOpenHelper;
 import com.nutegg.sqlitecreate.domain.Person;
@@ -17,6 +18,7 @@ import com.nutegg.sqlitecreate.domain.Person;
  */
 public class PersonSqliteApiDao {
 	private PersonSQLiteOpenHelper helper;
+	Context context;
 	public PersonSqliteApiDao(Context context){
 		helper = new PersonSQLiteOpenHelper(context);
 	}
@@ -33,6 +35,8 @@ public class PersonSqliteApiDao {
 			System.out.println("Ìí¼Ó³É¹¦!");
 		}
 		db.close();
+		Uri url = Uri.parse("content://com.nutegg.doing/insert");
+		context.getContentResolver().notifyChange(url, null);
 	}
 	public void update(String name, String number){
 		SQLiteDatabase db = helper.getWritableDatabase();
